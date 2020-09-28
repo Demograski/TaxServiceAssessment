@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TaxService.Models;
 
-namespace UnitTestProject1
+namespace TaxJarCalculatorTests
 {
     [TestClass]
     public class TaxJarCalculatorTests
@@ -130,7 +130,7 @@ namespace UnitTestProject1
         {
             //arrange
             var lineItems = new List<CalculateTax_LineItem>();
-            lineItems.Add(new CalculateTax_LineItem {id="3", quantity = "1", unit_price = "16.95", product_tax_code = "40030" });
+            lineItems.Add(new CalculateTax_LineItem { id = "3", quantity = "1", unit_price = "16.95", product_tax_code = "40030" });
 
             var taxRequest = new CalculateTaxRequest("US", "San Francisco", "94111", "CA", "600 Montgomery St", "US", "Campbell", "95008", "CA", "33 N. First Street", "16.95", "10", lineItems, null);
             var taxjarService = new TaxJar_Calculator("https://api.taxjar.com/v2/");
@@ -147,9 +147,9 @@ namespace UnitTestProject1
         {
             //arrange
             var lineItems = new List<CalculateTax_LineItem>();
-            lineItems.Add(new CalculateTax_LineItem {quantity = "1", unit_price = "16.95" });
+            lineItems.Add(new CalculateTax_LineItem { quantity = "1", unit_price = "16.95" });
 
-            var taxRequest = new CalculateTaxRequest("CA", null, "V6G 3E", "BC", null, "CA", null, "M5T 2T6", "ON",null, "16.95", "10", lineItems, null);
+            var taxRequest = new CalculateTaxRequest("CA", null, "V6G 3E", "BC", null, "CA", null, "M5T 2T6", "ON", null, "16.95", "10", lineItems, null);
             var taxjarService = new TaxJar_Calculator("https://api.taxjar.com/v2/");
             var expectedAmount = 3.5; //weirdly no extra taxes?
 
@@ -164,7 +164,7 @@ namespace UnitTestProject1
         {
             //arrange
             var lineItems = new List<CalculateTax_LineItem>();
-            lineItems.Add(new CalculateTax_LineItem {id="3", quantity = "1", unit_price = "16.95", product_tax_code = "40030" });
+            lineItems.Add(new CalculateTax_LineItem { id = "3", quantity = "1", unit_price = "16.95", product_tax_code = "40030" });
 
             var taxRequest = new CalculateTaxRequest("US", "San Francisco", "94111", "CA", "600 Montgomery St", "US", "Orlando", "32801", "FL", "200 S. Orange Ave", "16.95", "10", lineItems, null);
             var taxjarService = new TaxJar_Calculator("https://api.taxjar.com/v2/");
@@ -182,12 +182,12 @@ namespace UnitTestProject1
         {
             //arrange
             var lineItems = new List<CalculateTax_LineItem>();
-            lineItems.Add(new CalculateTax_LineItem { quantity = "1", unit_price = "19.99"});
-            lineItems.Add(new CalculateTax_LineItem { quantity = "1", unit_price = "9.95"});
+            lineItems.Add(new CalculateTax_LineItem { quantity = "1", unit_price = "19.99" });
+            lineItems.Add(new CalculateTax_LineItem { quantity = "1", unit_price = "9.95" });
 
             var nexusItems = new List<CalculateTax_NexusAddress>();
-            nexusItems.Add(new CalculateTax_NexusAddress { country="US", state ="FL", zip="32801"});
-            nexusItems.Add(new CalculateTax_NexusAddress { country="US", state="MO", zip="63101" });
+            nexusItems.Add(new CalculateTax_NexusAddress { country = "US", state = "FL", zip = "32801" });
+            nexusItems.Add(new CalculateTax_NexusAddress { country = "US", state = "MO", zip = "63101" });
 
             var taxRequest = new CalculateTaxRequest("US", "Orlando", "32801", "FL", null, "US", "Kansas City", "64155", "MO", null, "29.94", "7.99", lineItems, nexusItems);
             var taxjarService = new TaxJar_Calculator("https://api.taxjar.com/v2/");
